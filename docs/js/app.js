@@ -1,6 +1,7 @@
 //DOM Elements
-    hour = document.querySelector('.hour');
-    min = document.querySelector('.minute');
+const hour = document.querySelector('.hour');
+const min = document.querySelector('.minute');
+const display = document.querySelector('.display')
 
 //Set Time
 const updateTime = () => {
