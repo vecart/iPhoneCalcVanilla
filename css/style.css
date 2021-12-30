@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body{
+    margin: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.calculator{
+    background: black;
+    border-radius: 50px;
+    color: whitesmoke;
+    height: 1218px;
+    padding: 20px;
+    width: 563px;
+}
+
+.top-container{
+    display: flex;
+    height: 250px;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.display{
+    font-size: 130px;
+    margin-bottom: 20px;
+    height: 158px;
+    text-align: right;
+    margin-right: 20px;
+}
