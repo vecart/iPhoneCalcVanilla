@@ -54,7 +54,7 @@ body{
     height: 110px;
     justify-content: center; /*horizontal alignment*/
     width: 110px;
-    transition: filter .25s;
+    transition: filter.25s;
 }
 
 .button.function{
@@ -80,6 +80,7 @@ body{
 .button:active,
 .button:focus{
     filter:brightness(120%)
+    
 }
 
 .bottom{
