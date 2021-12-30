@@ -17,6 +17,7 @@ body{
     height: 1218px;
     padding: 20px;
     width: 563px;
+    position: relative; /*inserted for bottom div*/
 }
 
 .top-container{
@@ -28,8 +29,66 @@ body{
 
 .display{
     font-size: 130px;
-    margin-bottom: 20px;
     height: 158px;
-    text-align: right;
+    margin-bottom: 20px;
     margin-right: 20px;
+    text-align: right;
+}
+
+/* grid: 4 columns, 5 rows */
+.buttons-container{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    /*1fr takes space or size of element and distributes all equally by 5*/
+}
+
+.button{
+    align-items: center; /*vertical alignment*/
+    background: #333;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    font-size: 45px;
+    height: 110px;
+    justify-content: center; /*horizontal alignment*/
+    width: 110px;
+    transition: filter .25s;
+}
+
+.button.function{
+    background: #a5a5a5;
+    color: black;
+}
+
+.button.operator{
+    background: #f1a33c;
+}
+/*zero is taking up 2 columns*/
+.button.number-0{
+    border-radius: 55px;
+    grid-column: 1/ span 2; /*combining start / end */
+    justify-content: flex-start;
+    padding-left: 43px;
+    width: 250px;
+    /* grid-column-start: 1;
+    grid-column-end: 3; */
+}
+
+/* reactive when clicked*/
+.button:active,
+.button:focus{
+    filter:brightness(120%)
+}
+
+.bottom{
+    width: 200px;
+    height: 5px;
+    background: white;
+    border-radius: 4px;
+    position: absolute; /*will be absolute with respect to the relative calculator position*/
+    bottom: 10px;
+    left: 50%; /*go to middle of relative calculator div*/
+    transform: translateX(-50%); /*moves it left 50% with respect by how wide the white line is*/
 }
