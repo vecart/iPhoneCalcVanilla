@@ -26,12 +26,24 @@ const number8 = document.querySelector('.number-8');
 const number9 = document.querySelector('.number-9');
 //will need to loop through numbers, array
 const numberArray = [
-    decimal, number0, number1, number2, number3, number4, number5, number6, number7, number8, number9
+    number0, number1, number2, number3, number4, number5, number6, number7, number8, number9
 ];
 
-// const loop = () => {
-//     for (let i = 0; i < numberArray.length; i++) {
-//         if (numberArray[i] === )
-//     }
-// }
+//Invoke Functions
+//Changing numbers to string so they aggregate rather than add
+const handleNumberClick = (numString) => {
+    const currentDisplayString = display.textContent;
+    if (currentDisplayString === '0') {
+        display.textContent = numString;
+    } else {
+        display.textContent = currentDisplayString + numString;
+    } 
+};
 
+//ADD EVENT LISTENERS - Numbers and Buttons
+for (let i = 0; i < numberArray.length; i++) {
+    const number = numberArray[i];
+    number.addEventListener('click', () => {
+        handleNumberClick(i.toString());
+    })
+}
