@@ -1,7 +1,7 @@
 //DISPLAY AND BUTTONS
 //DOM ELEMENTS
 //grab every button, including display
-const display = document.querySelector('.display');
+const value = document.querySelector('.value');
 //function buttons
 const ac = document.querySelector('.ac');
 const pm = document.querySelector('.pm');
@@ -28,22 +28,54 @@ const number9 = document.querySelector('.number-9');
 const numberArray = [
     number0, number1, number2, number3, number4, number5, number6, number7, number8, number9
 ];
+//**********************************************/
+//FUNCTIONS
+//**********************************************/
+const getValueStr = () => value.textContent.split(',').join('');
 
-//Invoke Functions
+const getValueNum = () => {
+    return parseFloat(getValueStr());
+};
+
+const setStrAsValue = (valueStr) => {
+    if (valueStr[valueStr.length - 1] === '.') {
+        value.textContent += '.';
+        return;
+    };
+    const [wholeNumStr, decimalStr] = valueStr.split('.'); 
+    if (decimalStr) {
+        value.textContent = parseFloat(wholeNumStr).toLocaleString() + '.' + decimalStr;
+    } else {
+        value.textContent = parseFloat(wholeNumStr).toLocaleString();
+    }
+};
+
 //Changing numbers to string so they aggregate rather than add
 const handleNumberClick = (numString) => {
-    const currentDisplayString = display.textContent;
-    if (currentDisplayString === '0') {
-        display.textContent = numString;
+    const currentValueString = getValueStr();
+    if (currentValueString === '0') {
+        setStrAsValue(numString);
     } else {
-        display.textContent = currentDisplayString + numString;
+        setStrAsValue(currentValueString + numString);
     } 
 };
 
-//ADD EVENT LISTENERS - Numbers and Buttons
+//**********************************************/
+//ADD EVENT LISTENERS - Functions
+//**********************************************/
+
+//**********************************************/
+//ADD EVENT LISTENERS - Numbers and Decimal
+//**********************************************/
 for (let i = 0; i < numberArray.length; i++) {
     const number = numberArray[i];
     number.addEventListener('click', () => {
         handleNumberClick(i.toString());
     })
-}
+};
+decimal.addEventListener('click', () => {
+    const currentValueString = getValueStr();
+    if (!currentValueString.includes('.')) {
+        setStrAsValue(currentValueString + '.');  
+    }
+});
