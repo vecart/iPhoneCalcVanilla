@@ -63,6 +63,9 @@ const handleNumberClick = (numString) => {
 //**********************************************/
 //ADD EVENT LISTENERS - Functions
 //**********************************************/
+ac.addEventListener('click', () => {
+    setStrAsValue('0');
+});
 
 //**********************************************/
 //ADD EVENT LISTENERS - Numbers and Decimal
