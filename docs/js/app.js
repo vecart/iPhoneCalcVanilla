@@ -67,6 +67,14 @@ ac.addEventListener('click', () => {
     setStrAsValue('0');
 });
 
+pm.addEventListener('click', () => {
+
+});
+
+percent.addEventListener('click', () => {
+    
+});
+
 //**********************************************/
 //ADD EVENT LISTENERS - Numbers and Decimal
 //**********************************************/
