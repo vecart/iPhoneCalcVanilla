@@ -2,17 +2,14 @@
 //DOM ELEMENTS
 //grab every button, including display
 const value = document.querySelector('.value');
-//function buttons
 const ac = document.querySelector('.ac');
 const pm = document.querySelector('.pm');
 const percent = document.querySelector('.percent');
-//operator buttons
 const addition = document.querySelector('.addition');
 const subtraction = document.querySelector('.subtraction');
 const multiplication = document.querySelector('.multiplication');
 const division = document.querySelector('.division');
 const equal = document.querySelector('.equal');
-//number buttons
 const decimal = document.querySelector('.decimal');
 const number0 = document.querySelector('.number-0');
 const number1 = document.querySelector('.number-1');
@@ -60,6 +57,10 @@ const handleNumberClick = (numString) => {
     } 
 };
 
+const handleOperatorClick = (operation) => {
+
+}
+
 //**********************************************/
 //ADD EVENT LISTENERS - Functions
 //**********************************************/
@@ -68,11 +69,45 @@ ac.addEventListener('click', () => {
 });
 
 pm.addEventListener('click', () => {
-
+    const currentValueNum = getValueNum();
+    const currentValueString = getValueStr();
+    if (currentValueString === '-0') {
+        return setStrAsValue('0');
+    }
+    if (currentValueNum >= 0) {
+        setStrAsValue(`-${currentValueString}`)
+    } else {
+        setStrAsValue(currentValueString.substring(1));
+    }
 });
 
 percent.addEventListener('click', () => {
-    
+    const currentValueNum = getValueNum();
+    const newValueNum = currentValueNum / 100;
+    setStrAsValue(newValueNum.toString())
+});
+
+//**********************************************/
+//ADD EVENT LISTENERS - Operators
+//**********************************************/
+addition.addEventListener('click', () => {
+    handleOperatorClick('addition');
+});
+
+subtraction.addEventListener('click', () => {
+    handleOperatorClick('subtraction');
+});
+
+multiplication.addEventListener('click', () => {
+    handleOperatorClick('multiplication');
+});
+
+division.addEventListener('click', () => {
+    handleOperatorClick('division');
+});
+
+equal.addEventListener('click', () => {
+
 });
 
 //**********************************************/
