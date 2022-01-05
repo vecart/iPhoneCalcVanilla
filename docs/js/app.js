@@ -26,6 +26,13 @@ const numberArray = [
     number0, number1, number2, number3, number4, number5, number6, number7, number8, number9
 ];
 //**********************************************/
+//VARIABLES
+//**********************************************/
+let valueStringInMemory = null;
+let operatorInMemory = null;
+
+
+//**********************************************/
 //FUNCTIONS
 //**********************************************/
 const getValueStr = () => value.textContent.split(',').join('');
@@ -57,8 +64,34 @@ const handleNumberClick = (numString) => {
     } 
 };
 
-const handleOperatorClick = (operation) => {
+const getResultOfOperationAsString = () => {
+    const currentValueNum = getValueNum();
+    const valueNumInMemory = parseFloat(valueStringInMemory);
+    let newValueNum;
+    if (operatorInMemory === 'addition') {
+        newValueNum = valueNumInMemory + currentValueNum;
+    } else if (operatorInMemory === 'subtraction') {
+        newValueNum = valueNumInMemory - currentValueNum;
+    } else if (operatorInMemory === 'multiplication') {
+        newValueNum = valueNumInMemory * currentValueNum;
+    } else if (operatorInMemory === 'division') {
+        newValueNum = valueNumInMemory / currentValueNum;
+    }
+    return newValueNum.toString();
+}
 
+const handleOperatorClick = (operation) => {
+    const currentValueString = getValueStr();
+
+    if (!valueStringInMemory) {
+        valueStringInMemory = currentValueString;
+        operatorInMemory = operation;
+        setStrAsValue('0');
+        return;
+    }
+    valueStringInMemory = getResultOfOperationAsString();
+    operatorInMemory = operation;
+    setStrAsValue('0');
 }
 
 //**********************************************/
@@ -66,6 +99,8 @@ const handleOperatorClick = (operation) => {
 //**********************************************/
 ac.addEventListener('click', () => {
     setStrAsValue('0');
+    valueStringInMemory = null;
+    operatorInMemory = null;
 });
 
 pm.addEventListener('click', () => {
@@ -84,7 +119,9 @@ pm.addEventListener('click', () => {
 percent.addEventListener('click', () => {
     const currentValueNum = getValueNum();
     const newValueNum = currentValueNum / 100;
-    setStrAsValue(newValueNum.toString())
+    setStrAsValue(newValueNum.toString());
+    valueStringInMemory = null;
+    operatorInMemory = null;
 });
 
 //**********************************************/
@@ -107,7 +144,11 @@ division.addEventListener('click', () => {
 });
 
 equal.addEventListener('click', () => {
-
+ if (valueStringInMemory) {
+    setStrAsValue(getResultOfOperationAsString())
+    valueStringInMemory = null;
+    operatorInMemory = null;
+ }
 });
 
 //**********************************************/
